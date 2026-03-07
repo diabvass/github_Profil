@@ -1,23 +1,39 @@
+
+/* ===== VARIABLES CSS ===== */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --secondary-color: #161b22;
+    --accent-color: #1f6feb;
+    --text-primary: #f0f6fc;
+    --text-secondary: #7d8590;
+    --bg-dark: #0d1117;
+    --bg-card: #161b22;
+    --border-color: #30363d;
+    --shadow-glow: 0 0 20px rgba(35, 134, 54, 0.3);
+    --gradient-primary: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+    --card-bg-color: #161b22;
+    --github-logo-color: #f0f6fc;
 }
 
-
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 10vh;
-  display: flex;
-  align-items: center;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 2rem 0;
+}
+.btn-success {
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+    background: linear-gradient(135deg, #2ea043 0%, #3fb950 100%);
 }

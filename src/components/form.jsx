@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Profil from "./profil";
+import style from "./form.module.css";
 
 function User() {
   const [nom, setNom] = useState("");
@@ -20,24 +21,30 @@ function User() {
 
   return (
     <>
-      <div>Rechercher un utilisateur Github</div>
-      <form onSubmit={valid}>
-        <div className="champ">
-          <input
-            type="text"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
-            placeholder="Entrez un nom GitHub"
-          />
+        <div className={style["body-github"]}>
+            <div className="container mt-5">
+                <h1 className={style.titre}>Rechercher un utilisateur GitHub</h1>
+                <form onSubmit={valid} className="d-flex justify-content-center mb-4">
+                    <input type="text"
+                    value={nom}
+                    onChange={(e) => setNom(e.target.value)}
+                    className={style.champ} 
+                    placeholder="Nom d'utilisateur GitHub" />
+                    <button type="submit" className="btn btn-success ms-2">Rechercher</button>
+                </form>
+                <div className="d-flex justify-content-center">
+                    {message && <div className={style.message}>{message}</div>}
+                    
+                </div>
+                {user && <Profil nom={user} />}
+                
+            </div>
         </div>
-        <div>
-          <button>Rechercher</button>
-        </div>
-      </form>
-      {message && <div>{message}</div>}
-      {user && <Profil nom={user} />}
+     
+      
+ 
+      
     </>
   );
 }
-
 export default User

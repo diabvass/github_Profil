@@ -60,9 +60,9 @@ export default function Profil({ nom }) {
 
       {recentdata && (
         <div>
-            <p>Nom : <span className="detail-value">{recentdata.name}</span></p>
-            <p>URL : <span className="detail-value"><a href={recentdata.html_url}>{recentdata.html_url}</a></span></p>
-            <p>Description : <span className="detail-value">{recentdata.description}</span></p>
+            <p>Nom :{recentdata.name}</p>
+            <p>URL : <a href={recentdata.html_url}>{recentdata.html_url}</a></p>
+            <p>Description : {recentdata.description}</p>
             <p>Langage principal :{recentdata.language}</p>
             <p>Dernière mise à jour : {recentdata.updated_at}</p>
         </div>
