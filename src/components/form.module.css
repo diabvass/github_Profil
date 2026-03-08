@@ -38,3 +38,11 @@
     font-size: 1.1rem;
     color: red;
 }
+
+@media (max-width: 768px) {
+    .titre {
+        font-size: 1.2rem;
+    }
+}
+
+
