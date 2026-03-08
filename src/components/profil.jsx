@@ -14,7 +14,7 @@ export default function Profil({ nom }) {
       setInstant(true);
       setError("");
       try {
-        const response = await fetch(`https://api.github.com/users/${nom}`);
+        const response = await fetch(`${import.meta.env.VITE_APP_URL}/${nom}`);
         if (!response.ok) throw new Error("Utilisateur non trouvé");
         const userData = await response.json();
         setData(userData);
@@ -41,20 +41,14 @@ export default function Profil({ nom }) {
     fetchData();
   }, [nom]);
 
-  if (instant) return <div>Chargement...</div>;
-  if (error) return <div>Erreur : {error}</div>;
-  if (!data) return <div>Aucune donnée</div>;
+  if (instant) return <div className="d-flex justify-content-center">Chargement...</div>;
+  if (error) return <div className="d-flex justify-content-center text-danger">Erreur : {error}</div>;
+  if (!data) return <div className="d-flex justify-content-center text-warning">Aucune donnée</div>;
 
   const { avatar_url, name, bio, location, public_repos, followers, following, created_at, html_url } = data;
 
   return (
     <div className={style.profileCard}>
-        <div className="profile-image-container">
-            <div className="profile-image-circle">
-                <i className="fab fa-github github-icon"></i>
-            </div>
-        </div>
-
         <div className={style.userHeader}>
             <img src={avatar_url} alt="Avatar de ${nom}" class={style.img} width="100"/>
             <div>
@@ -78,7 +72,7 @@ export default function Profil({ nom }) {
             <p className={style.recenTitle}><u>Information sur le repertoire récent</u></p>
             <div className={style.repoDetails}>
                 <p><strong>Nom :</strong> <span className={style.value}>{recentdata.name}</span></p>
-                <p><strong>URL :</strong> <span className={style.value}><a href={recentdata.html_url}>{recentdata.html_url}</a></span></p>
+                <p><strong>URL :</strong> <span className={style.value}><a href={recentdata.html_url} target="_blank" rel="noopener noreferrer">Repo Github</a></span></p>
                 <p><strong>Description :</strong> <span className={style.value}>{recentdata.description}</span></p>
                 <p><strong>Langage principal :</strong> <span className={style.value}>{recentdata.language}</span></p>
                 <p><strong>Dernière mise à jour :</strong> <span className={style.value}>{recentdata.updated_at}</span></p>

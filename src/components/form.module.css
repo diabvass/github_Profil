@@ -33,3 +33,8 @@
     box-shadow: var(--shadow-glow);
     outline: none;
 }
+.message {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: red;
+}
