@@ -35,7 +35,7 @@ export default function Profil({ nom }) {
         const recent = await fetch(userData.repos_url);
         if (!recent.ok) {
           console.error(`Repo recent erreur : ${recent.status}`);
-          throw new Error('Dernier repo.');
+          throw new Error('Dernier repo introuvable.');
         }
 
         const reposData = await recent.json();
