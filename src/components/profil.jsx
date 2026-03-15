@@ -8,19 +8,35 @@ export default function Profil({ nom }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!nom) return;
+    if (!nom) {
+      setError("");
+      return;
+    }
 
     const fetchData = async () => {
       setInstant(true);
       setError("");
       try {
-        const response = await fetch(`${import.meta.env.VITE_APP_URL}/${nom}`);
-        if (!response.ok) throw new Error("Utilisateur non trouvé");
+        const response = await fetch(`${import.meta.env.VITE_APP_URL}/${nom}`,{
+          headers: {
+            'Authorization' : `Bearer ${import.meta.env.VITE_APP_TOKEN}`,
+            'accept' : 'application/vnd.github.v3+json'
+          }
+        });
+        if (!response.ok) {
+          console.error(response.status);
+          if(response.status === 404) throw new Error(`Cet utilisateur n'existe pas.`);
+          if(response.status === 500) throw new Error(`Github a un problème pour le moment.`);
+          if(response.status === 403) throw new Error(`Limite Gihub dépassée. Attends un instant`);
+        }
         const userData = await response.json();
         setData(userData);
 
         const recent = await fetch(userData.repos_url);
-        if (!recent.ok) throw new Error(`Erreur HTTP : ${recent.status}`);
+        if (!recent.ok) {
+          console.error(`Repo recent erreur : ${recent.status}`);
+          throw new Error('Dernier repo.');
+        }
 
         const reposData = await recent.json();
 
@@ -50,7 +66,7 @@ export default function Profil({ nom }) {
   return (
     <div className={style.profileCard}>
         <div className={style.userHeader}>
-            <img src={avatar_url} alt="Avatar de ${nom}" class={style.img} width="100"/>
+            <img src={avatar_url} alt="Avatar de ${nom}" className={style.img} width="100"/>
             <div>
                 <h2 className={style.username}>{name || data.login}</h2>
                 <p className={style.description}>{bio || "Pas de bio"}</p>

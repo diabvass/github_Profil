@@ -1,5 +1,5 @@
 
-/* ===== VARIABLES CSS ===== */
+/*VARIABLES CSS*/
 :root {
     --secondary-color: #161b22;
     --accent-color: #1f6feb;
@@ -35,9 +35,4 @@ body {
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
     background: linear-gradient(135deg, #2ea043 0%, #3fb950 100%);
-}
-.github-icon {
-    font-size: 2rem;
-    color: var(--github-logo-color);
-    opacity: 0.8;
 }

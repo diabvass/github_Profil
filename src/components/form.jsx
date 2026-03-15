@@ -15,7 +15,6 @@ function User() {
       return;
     }
     setUser(nom);
-    setNom("");
      
   };
 
@@ -23,8 +22,8 @@ function User() {
     <>
         <div className={style["body-github"]}>
             <div className="container mt-5">
-                <h1 className={style.titre}>Rechercher un utilisateur GitHub</h1>
-                <form onSubmit={valid} className="d-flex justify-content-center mb-4">
+                <h1 className={style.titre}>GitHub User Profil</h1>
+                <form onSubmit={valid} className="d-flex justify-content-center mb-4  g-3 align-items-center row row-cols-lg-auto">
                     <input type="text"
                     value={nom}
                     onChange={(e) => setNom(e.target.value)}
@@ -35,15 +34,14 @@ function User() {
                 <div className="d-flex justify-content-center">
                     {message && <div className={style.message}>{message}</div>}
                     
-                </div>
-                {user && <Profil nom={user} />}
-                
+                </div> 
             </div>
         </div>
      
-      
+       <div>
+          {user && <Profil nom={user} />}
+        </div>
  
-      
     </>
   );
 }
